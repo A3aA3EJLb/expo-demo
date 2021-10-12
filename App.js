@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppLoading } from 'expo';
-import { Container, Header, Content, Body, Left, Right, Text } from 'native-base';
+import { Container, Header, Content, Body, Left, Right, } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,7 +10,7 @@ import * as Sharing from 'expo-sharing';
 import uploadToAnonymousFilesAsync from 'anonymous-files';
 
 export default class App extends React.Component {
-  constroctor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       isReady: false,
@@ -25,7 +25,40 @@ export default class App extends React.Component {
     });
     this.setState({ isReady: true });
   }
-  
+
+  render() {
+    if (!this.setState.isReady) {
+      return <AppLoading />;
+    }
+
+    return (
+      <Container>
+        <Header>
+          <Left style={{backgroundColor: 'Silver' }}>
+           <Text style={{color: '#ffffff'}}>Left</Text>
+            </Left> 
+            <Body>
+              <Text style={{color: '#ffffff'}}>My Header</Text>
+            </Body>
+            <Right style={{backgroundColor: 'Silver' }}>  
+              <Text style={{color: '#ffffff'}}>Right</Text>
+            </Right>
+          </Header>
+          <Content>
+            <Grid>
+              <Col>
+                <Text>First Column</Text>
+              </Col>
+              <Col>  
+                <Text>Second Column</Text>
+              </Col>
+            </Grid>
+          </Content>
+        </Container>
+      );
+    }
+  }
+
 export default function App() {
     const [selectedImage, setSelectedImage] = React.useState(null);
 
